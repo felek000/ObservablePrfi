@@ -43,8 +43,7 @@ class ObservablePrfi {
    */
   setValue(value) {
     if (this.type !== "any" && (value, typeof value !== this.type)) {
-      console.error("Wrong type");
-      return;
+      throw new TypeError("wrong type");
     }
     this.state = value;
     if (this.saveHistory) {
