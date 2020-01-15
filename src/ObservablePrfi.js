@@ -32,6 +32,9 @@ class ObservablePrfi {
     this.eventName = options.eventName;
     this.saveHistory = options.saveHistory;
     this.type = options.type;
+    // if (this.saveHistory) {
+    //   this._pushToHistory(null);
+    // }
     this.setValue(options.value);
   }
 
@@ -64,7 +67,7 @@ class ObservablePrfi {
    * @returns {[]} - element in history
    */
   readFromHistory(position) {
-    if (!position) {
+    if (typeof position !== "number") {
       console.error("Position must be provided");
       return [];
     }
@@ -92,12 +95,12 @@ class ObservablePrfi {
 
   /**
    *
-   * @param {number} position - position to restore value from history
+   * @param {number} position - position to restore value from history start from 0
    * @returns {boolean}
    */
   revFromHistory(position) {
-    if (!position) {
-      throw new Error("Position must be provided");
+    if (typeof position !== "number") {
+      throw new Error("Position must be number");
     }
     if (!this.saveHistory) {
       console.error("History set to false");
