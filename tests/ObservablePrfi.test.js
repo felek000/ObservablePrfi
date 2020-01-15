@@ -90,6 +90,23 @@ describe('tests ObservablePrfi', () => {
     });
 
 
+    it('should read from history position', function () {
+        const optionsTest = {
+            value: 1,
+            eventName: "event",
+            selector: "body",
+            saveHistory: true,
+            type: "number"
+        };
+        const o = new ObservablePrfi(optionsTest);
+        o.setValue(2);
+        o.setValue(3);
+        o.revFromHistory(1);
+        const value = o.readFromHistory(0);
+        expect(value).toBe(1)
+    });
+
+
     it('should trigger event', function async() {
         const o = new ObservablePrfi();
         const body = document.querySelector('body');
