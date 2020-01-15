@@ -59,18 +59,34 @@ describe('tests ObservablePrfi', () => {
     });
 
     it('should return array of element in history', function () {
-        const o = new ObservablePrfi();
+        const optionsTest = {
+            value: 1,
+            eventName: "event",
+            selector: "body",
+            saveHistory: true,
+            type: "number"
+        };
+        const o = new ObservablePrfi(optionsTest);
         o.setValue(2);
         o.setValue(3);
-        expect(o.getHistoryFull()).toBe('array');
+        const arrayElements = o.getHistoryFull();
+        expect(arrayElements).toEqual([1, 2, 3]);
     });
 
     it('should return restore value from history 2', function () {
-        const o = new ObservablePrfi();
+        const optionsTest = {
+            value: 1,
+            eventName: "event",
+            selector: "body",
+            saveHistory: true,
+            type: "number"
+        };
+        const o = new ObservablePrfi(optionsTest);
         o.setValue(2);
         o.setValue(3);
         o.revFromHistory(1);
-        expect(o.getValue()).toBe(2)
+        const value = o.getValue();
+        expect(value).toBe(2)
     });
 
 
