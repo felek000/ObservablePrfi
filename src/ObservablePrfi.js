@@ -32,9 +32,6 @@ class ObservablePrfi {
     this.eventName = options.eventName;
     this.saveHistory = options.saveHistory;
     this.type = options.type;
-    if (this.saveHistory) {
-      this._pushToHistory(null);
-    }
     this.setValue(options.value);
   }
 
